@@ -1,6 +1,4 @@
-.env
-credentials.json
-Environment_And_Keys.zip
+
 __pycache__/
 output/
 *.mp4
