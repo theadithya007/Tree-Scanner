@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Safety Scanner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tree Safety Scanner</h1>
+            <p>Analyze tree health, structural integrity, and parking safety instantly.</p>
+        </header>
+
+        <main>
+            <!-- Input Section -->
+            <section class="card">
+                <h2>Image Input</h2>
+                <div class="camera-container">
+                    <video id="camera-stream" autoplay playsinline class="hidden"></video>
+                    <canvas id="camera-canvas" class="hidden"></canvas>
+                    <img id="preview-image" class="hidden" alt="Preview">
+                    <div id="camera-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <p>Capture or upload an image of a tree</p>
+                    </div>
+                </div>
+
+                <div class="controls-row">
+                    <button id="start-camera-btn" class="btn">Start Camera</button>
+                    <button id="capture-btn" class="btn hidden">Take Photo</button>
+                    
+                    <input type="file" id="upload-image" accept="image/*" class="hidden">
+                    <label for="upload-image" class="btn">Upload Image</label>
+                </div>
+
+                <div style="margin-top: 1.5rem;">
+                    <button id="analyze-btn" class="btn btn-primary hidden" style="width: 100%;">Analyze Tree</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="card" id="results-card" style="display: none;">
+                <h2>Analysis Results</h2>
+                
+                <div id="analysis-loading" class="hidden">
+                    <div class="spinner"></div>
+                    <p>Analyzing structure and health... Please wait.</p>
+                </div>
+
+                <div id="analysis-content" class="hidden">
+                    <!-- Top Banner (Score & Parking) -->
+                    <div id="status-banner" class="results-header theme-safe">
+                        <div>
+                            <div id="status-badge" class="status-badge theme-safe">
+                                Safe
+                            </div>
+                            <div class="parking-status" id="parking-status">
+                                ✅ Safe to park under
+                            </div>
+                        </div>
+                        <div class="score-box">
+                            <div class="score-number" id="safety-score">10</div>
+                            <div class="score-label">/ 10 Score</div>
+                        </div>
+                    </div>
+
+                    <!-- Details Grid -->
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <h3>Overall Health</h3>
+                            <p id="res-health" style="color: var(--text-muted); font-size: 0.95rem;"></p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Structural Weaknesses</h3>
+                            <ul id="res-weaknesses"></ul>
+                        </div>
+                        <div class="result-item">
+                            <h3>Disease Signs</h3>
+                            <ul id="res-diseases"></ul>
+                        </div>
+                        <div class="result-item">
+                            <h3>Decay</h3>
+                            <ul id="res-decay"></ul>
+                        </div>
+                        <div class="result-item" style="grid-column: 1 / -1;">
+                            <h3>Recommendations</h3>
+                            <ul id="res-recommendations"></ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
